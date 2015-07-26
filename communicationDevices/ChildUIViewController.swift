@@ -45,8 +45,8 @@ MCSessionDelegate {
         // Bundle up the text in the message field, and send it off to all
         // connected peers
         
-        let msg = sender.currentTitle!.dataUsingEncoding(NSUTF8StringEncoding,
-            allowLossyConversion: false)
+        let msg = sender.titleLabel?.text?.dataUsingEncoding(NSUTF8StringEncoding,
+            allowLossyConversion: false) ?? NSData()
         
         var error : NSError?
         
@@ -57,7 +57,6 @@ MCSessionDelegate {
             print("Error sending data: \(error?.localizedDescription)")
         }
         
-        self.messageField.text = ""
     }
     
     func updateState(texts : [String], fromPeer peerID: MCPeerID) {
